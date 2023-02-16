@@ -41,7 +41,7 @@ namespace ElectronicSignatureService.Entities
                 this.DocumentSlot,
                 this.TimeStamp.ToString("s", CultureInfo.InvariantCulture), 
                 this.SignatureData, 
-                this.VerificationData).ToSHA256();
+                this.VerificationData).ToSHA256_Base64();
         }
 
         public string ToJsonString()

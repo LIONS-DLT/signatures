@@ -24,7 +24,7 @@ public partial class SelectCertModal : ContentPage
                 };
                 btn.Clicked += (object sender, EventArgs e) =>
                 {
-                    App.Current.MainPage.Navigation.PopModalAsync().Wait();
+                    App.Current.MainPage.Navigation.PopModalAsync();
                     _callback(filepath);
                 };
                 layout.Add(btn);

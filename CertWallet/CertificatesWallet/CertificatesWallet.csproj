@@ -100,7 +100,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#ed7203" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#ed7203" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\lions_splash.png" Color="#ed7203" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -114,7 +114,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\AppIcon\lions_appicon.png" />
 	  <None Remove="Resources\Images\lions_icon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiIcon Include="Resources\AppIcon\lions_appicon.png" />
 	</ItemGroup>
 
 	<ItemGroup>

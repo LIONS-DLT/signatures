@@ -109,11 +109,22 @@
             }
         }
 
+        function _arrayBufferToBase64(buffer) {
+            var binary = '';
+            var bytes = new Uint8Array(buffer);
+            var len = bytes.byteLength;
+            for (var i = 0; i < len; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return window.btoa(binary);
+        }
+
         async function getFileHash(data) {
             const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-            return hashHex;
+            return _arrayBufferToBase64(hashBuffer).replaceAll('+', '-').replaceAll('/', '_').replaceAll("=", "");
+            //const hashArray = Array.from(new Uint8Array(hashBuffer));
+            //const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            //return hashHex;
         }
 
         function onFileChanged(input) {

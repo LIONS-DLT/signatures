@@ -31,7 +31,7 @@ namespace ElectronicSignatureService.Controllers
         }
 
         [HttpPost]
-        public IActionResult SignatureResponse(SignatureResponseJson response)
+        public IActionResult SignatureResponse([FromBody] SignatureResponseJson response)
         {
             if(response != null && !string.IsNullOrEmpty(response.SessionId))
             {

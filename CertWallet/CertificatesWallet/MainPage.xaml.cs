@@ -76,6 +76,7 @@ public partial class MainPage : ContentPage
             if (filename.EndsWith(".p12", StringComparison.OrdinalIgnoreCase) ||
                 filename.EndsWith(".pfx", StringComparison.OrdinalIgnoreCase))
             {
+                await Task.Delay(3000);
                 await App.Current.MainPage.Navigation.PushModalAsync(new PasswordModal((string pswd) =>
                 {
                     if (string.IsNullOrEmpty(pswd))

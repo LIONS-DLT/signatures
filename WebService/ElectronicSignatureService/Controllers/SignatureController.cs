@@ -336,7 +336,7 @@ namespace ElectronicSignatureService.Controllers
                 documentSlot.Trim().Trim('#'),
                 timeStampObj.ToString("s", CultureInfo.InvariantCulture),
                 signatureData.Trim(),
-                verificationData.Trim()).ToSHA256();
+                verificationData.Trim()).ToSHA256_Base64();
 
             string originalTimeStamp;
             string originalHash = Blockchain.GetSignatureHash(id, out originalTimeStamp);
