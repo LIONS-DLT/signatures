@@ -1,0 +1,73 @@
+﻿@using ElectronicSignatureService.Entities
+
+@model Document
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    int slot = (int)ViewData["slot"]!;
+}
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <input id="file" type="file" onchange="onFileChanged(this)" style="display:none" />
+        <h2>Document - @Model.Name</h2>
+        <div>
+            <div><small><b>ID:</b> @Model.ID</small></div>
+            <div><small><b>Filename:</b> @Model.Filename</small></div>
+            <div><small><b>Hash:</b> @Model.HashCode</small></div>
+            <div><small><b>Timestamp:</b> @Model.TimeStamp.ToString()</small></div>
+        </div>
+        <br />
+        <div>
+            <button class="btn btn-sm btn-outline-primary" onclick="$('#file').trigger('click')">Check file validity...</button>
+        </div>
+        <br />
+        <h3>Signature #@slot</h3>
+        <br />
+        <div id="formcontainer">
+            <div>
+                <button type="button" class="btn btn-lg btn-primary w-100" onclick="$('#formcontainer').load('@Url.Action("SelectMethod","Signature")')">Sign...</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/sign.js"></script>
+
+    <script>
+
+        function checkHashCode(filename, hash) {
+            
+            if(hash == '@Model.HashCode'){
+                alert('OK.\nThe fingerprint of the file is valid.');
+            }
+            else {
+                alert('WARNING!\nThe fingerprint of the file is NOT the same since document registration!');
+            }
+        }
+
+        async function getFileHash(data) {
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex;
+        }
+
+        function onFileChanged(input) {
+            var file = input.files[0];
+            var reader = new FileReader();
+            reader.onload = (function (f) {
+                $('#filename').html(f.name);
+                return function (e) {
+                    getFileHash(e.target.result).then(hashHex => checkHashCode(f.name, hashHex));
+                };
+            })(file);
+
+            reader.readAsArrayBuffer(file);
+        }
+    </script>
+}

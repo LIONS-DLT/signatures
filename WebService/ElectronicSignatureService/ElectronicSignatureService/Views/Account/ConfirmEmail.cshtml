@@ -1,0 +1,30 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <h2>Register</h2>
+        <br />
+        <div class="alert alert-info">
+            We have sent you an email with a confirmation code. Please also check your spam folder.
+            (TEST-CODE: 1234567890)
+        </div>
+        <br />
+        <form method="post" action="@Url.Action("ConfirmEmail", "Account")">
+
+            <div class="mb-3">
+                <label for="confirmationcode" class="form-label">Confirmation code</label>
+                <input type="text" class="form-control" id="confirmationcode" name="confirmationcode" placeholder="code ..." required>
+            </div>
+            <br />
+
+            <div>
+                <button type="submit" class="btn btn-primary w-100">Register</button>
+            </div>
+        </form>
+
+
+    </div>
+</div>

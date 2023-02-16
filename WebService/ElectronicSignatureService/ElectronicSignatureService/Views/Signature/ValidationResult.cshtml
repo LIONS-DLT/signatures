@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <h2>Validation Result</h2>
+
+        <br />
+        <h4>Input Data</h4>
+        <div>
+            <div><small><b>ID:</b> @ViewData["id"]</small></div>
+            <div><small><b>Document ID:</b> @ViewData["documentID"]</small></div>
+            <div><small><b>Document Slot:</b> @ViewData["documentSlot"]</small></div>
+            <div><small><b>Time Stamp:</b> @ViewData["timeStamp"]</small></div>
+            <div style="word-wrap:break-word"><small><b>Verification Data:</b> @ViewData["verificationData"]</small></div>
+            <div style="word-wrap:break-word"><small><b>Signature Data:</b> @ViewData["signatureData"]</small></div>
+            <div style="word-wrap:break-word"><small><b>Calculated Hash:</b> <span style="color:blue">@ViewData["hash"]</span></small></div>
+        </div>
+        <br />
+        <h4>Result</h4>
+        <div>
+            <div><small><b>Time Stamp in Blockchain:</b> @ViewData["originalTimeStamp"]</small></div>
+            <div style="word-wrap:break-word"><small><b>Hash in Blockchain:</b> <span style="color:blue">@ViewData["originalHash"]</span></small></div>
+            <div><small><b>Is valid:</b> @ViewData["isValid"]</small></div>
+        </div>
+        @if ((bool)ViewData["isValid"]!)
+        {
+            <div style="font-size:64px;color:forestgreen"><i class="bi bi-check-circle"></i></div>
+        }
+        else
+        {
+            <div style="font-size:64px;color:red"><i class="bi bi-exclamation-circle"></i></div>
+        }
+
+    </div>
+</div>

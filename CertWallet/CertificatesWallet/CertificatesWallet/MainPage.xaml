@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Certificates"
+             x:Class="CertificatesWallet.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            x:Name="layout"
+            Spacing="25"
+            Padding="30,20"
+            VerticalOptions="Center">
+
+            <Image
+                Source="lions_icon.png"
+                HeightRequest="100"
+                HorizontalOptions="Center" />
+
+            <!--<Label
+                Text="Hello, World!"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center" />-->
+
+            <Label
+                Text="Certificate Wallet"
+                SemanticProperties.HeadingLevel="Level2"
+                FontSize="18"
+                HorizontalOptions="Center" />
+
+            <Button
+                Text="Scan QR..."
+                Clicked="OnScanClick"
+                Padding="20"
+                HorizontalOptions="Fill" />
+            <Button
+                Text="+ Add Certificate (*.p12, *.pfx)"
+                Clicked="OnAddClick"
+                Padding="20"
+                HorizontalOptions="Fill" />
+
+            <!--<Button
+                Text="MichaelHofmeier.pfx"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Style="{StaticResource EntryButton}"
+                HorizontalOptions="Fill" />-->
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

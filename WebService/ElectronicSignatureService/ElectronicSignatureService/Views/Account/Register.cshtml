@@ -1,0 +1,31 @@
+﻿
+@{
+}
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <h2>Register</h2>
+        <br />
+        <form method="post" action="@Url.Action("Register", "Account")">
+            <div class="mb-3">
+                <label for="nameInput" class="form-label">Name</label>
+                <input type="text" class="form-control" id="nameInput" name="name" placeholder="your full name ..." required>
+            </div>
+            <div class="mb-3">
+                <label for="emailInput" class="form-label">E-Mail Address</label>
+                <input type="email" class="form-control" id="emailInput" name="email" placeholder="your@mail.address ..." required>
+            </div>
+            <div class="mb-3">
+                <label for="passwordInput" class="form-label">Password</label>
+                <input type="password" class="form-control" id="passwordInput" name="password" placeholder="password ..." required>
+            </div>
+            <br />
+
+            <div>
+                <button type="submit" class="btn btn-primary w-100">Next</button>
+            </div>
+        </form>
+
+
+     </div>
+</div>

@@ -1,0 +1,33 @@
+﻿@{
+    string url = (string)ViewData["signatureRequestUrl"]!;
+}
+
+
+<h4>Use your LIONS Certificates Wallet:</h4>
+<br />
+<div class="mb-3 text-center">
+    <img src="@Url.Action("QR","Home", new { target = url })" width="400" height="400" style="width:400px;height:auto" class="qrsvg" />
+</div>
+<div class="mb-3 text-center" style="word-wrap:break-word">
+    <a href="@url" target="_blank">@url</a>
+</div>
+<br />
+
+
+<script>
+
+    function checkForSuccess(){
+
+        $.post('@Url.Action("State","Certwallet")', {}, function (data) {
+            if (data.received){
+                document.location.href = '@Url.Action("CompleteWithWallet","Signature")';
+            }
+            else
+                setTimeout(checkForSuccess, 1000);
+        });
+    }
+
+    $(document).ready(function () {
+        initHandsignInput($('#handsignCanvas'));
+    });
+</script>

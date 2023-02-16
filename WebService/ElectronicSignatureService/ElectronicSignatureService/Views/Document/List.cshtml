@@ -1,0 +1,36 @@
+﻿@using ElectronicSignatureService.Entities
+
+@model List<Document>
+
+@{
+}
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <h2>Documents - All</h2>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Filename</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(Document document in Model.OrderBy(d=>d.TimeStamp).Reverse())
+                {
+                    <tr onclick="document.location.href='@Html.Raw(Url.Action("Details","Document", new { id = document.ID }))'" style="cursor:pointer">
+                        <td>@document.ID</td>
+                        <td>@document.Name</td>
+                        <td>@document.Filename</td>
+                        <td>@document.TimeStamp.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+

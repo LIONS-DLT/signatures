@@ -1,0 +1,97 @@
+﻿@{
+    string? alert_success = ViewData["alert_success"] as string;
+    string? alert_error = ViewData["alert_error"] as string;
+    string? alert_info = ViewData["alert_info"] as string;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LionsSign</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/bootstrap-icons.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ElectronicSignatureService.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-qr-code-scan"></i> @AppInit.ProductName</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house"></i> Home</a>
+                        </li>
+                        @*<li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Test"><i class="bi bi-cone"></i> Test</a>
+                        </li>*@
+                        @if (Context.IsLoggedIn())
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Document" asp-action="Index"><i class="bi bi-file-earmark"></i> Documents</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Signature" asp-action="Validate"><i class="bi bi-shield-check"></i> Validate Signature</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        @if (Context.IsLoggedIn())
+                        {
+                            <a class="btn btn-outline-light ms-2" asp-area="" asp-controller="Account" asp-action="Logout"><i class="bi bi-power"></i> Logout</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-outline-light ms-2" asp-area="" asp-controller="Account" asp-action="Login"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+                            <a class="btn btn-outline-light ms-2" asp-area="" asp-controller="Account" asp-action="Register"><i class="bi bi-plus-square-dotted"></i> Register</a>
+                        }
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @if (!string.IsNullOrEmpty(alert_success))
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @alert_success
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (!string.IsNullOrEmpty(alert_info))
+            {
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    @alert_info
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (!string.IsNullOrEmpty(alert_error))
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @alert_error
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - LionsSign - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

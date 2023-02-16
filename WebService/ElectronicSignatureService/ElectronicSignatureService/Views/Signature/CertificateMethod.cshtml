@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h4>Certificate:</h4>
+<br />
+<form action="@Url.Action("CompleteWithCertificate","Signature")" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="certfileInput" class="form-label">Certificate <small>(*.p12, *.pfx)</small></label>
+        <input type="file" class="form-control" id="certfileInput" name="certfile" placeholder="certificate ..." required>
+    </div>
+    <div class="mb-3">
+        <label for="certPasswordInput" class="form-label">Password <small>(for certificate)</small></label>
+        <input type="password" class="form-control" id="certPasswordInput" name="password" placeholder="password ..." required>
+    </div>
+    <br />
+
+    <div>
+        <button type="submit" class="btn btn-primary w-100">Sign with certificate</button>
+    </div>
+</form>

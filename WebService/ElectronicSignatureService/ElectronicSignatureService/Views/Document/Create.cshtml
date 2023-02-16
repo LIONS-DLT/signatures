@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <h2>New Document</h2>
+
+        <form method="post" action="@Url.Action("RegisterDocument", "Document")">
+            <div class="alert alert-info">
+                Specify a unique name for the document to be registered as far as possible, so that a clear assignment is possible for the recipients. 
+                Also specify the number of placeholders required for different signatures for your document.
+            </div>
+            <div class="mb-3">
+                <label for="nameInput" class="form-label">Document Name</label>
+                <input type="text" class="form-control" id="nameInput" name="name" placeholder="name or subject ...">
+            </div>
+            <div class="mb-3">
+                <label for="signaturesInput" class="form-label">Number of signatures/placeholders</label>
+                <input type="number" class="form-control" id="signaturesInput" name="signatures" placeholder="number of signatures ..." value="1">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary w-100">Next</button>
+            </div>
+        </form>
+    </div>
+</div>

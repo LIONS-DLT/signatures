@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<h4>Signer data:</h4>
+<br />
+<div class="mb-3">
+    <label for="nameInput" class="form-label">Name</label>
+    <input type="text" class="form-control" id="nameInput" name="name" placeholder="your full name ..." required>
+</div>
+<div class="mb-3">
+    <label for="emailInput" class="form-label">E-Mail Address</label>
+    <input type="email" class="form-control" id="emailInput" name="email" placeholder="your@mail.address ..." required>
+</div>
+<br />
+
+<div>
+    <button type="button" class="btn btn-primary w-100" onclick="emailFormSubmit('@Url.Action("ConfirmEMail","Signature")')">Next</button>
+</div>

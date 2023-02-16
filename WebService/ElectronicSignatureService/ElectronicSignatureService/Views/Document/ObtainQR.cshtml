@@ -1,0 +1,147 @@
+﻿@using ElectronicSignatureService.Entities
+
+@model Document
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    List<string> urls = (List<string>)ViewData["urls"]!;
+    int number = 1;
+}
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <h2>Document - @Model.Name</h2>
+        <div><small>ID: @Model.ID</small></div>
+        <br />
+
+        <h3>Signature URLs/QR-Codes</h3>
+        <div class="row">
+        @foreach (string url in urls)
+        {
+            string divID = "qr-" + number.ToString();
+            <div class="col-lg-6">
+                <h4>#@(number++)</h4>
+                <div id="@divID">
+                    <div>
+                        <img src="@Url.Action("QR","Home", new { target = url })" width="128" height="128" style="width:128px;height:auto" class="qrsvg" />
+                    </div>
+                    <div>
+                        <a href="@url" style="word-break:break-all">@url</a>
+                    </div>
+                    <div>
+                        <small style="color:#c3124c;font-style:italic">To add or check signatures, please use the link or QR code.</small>
+                    </div>
+                </div>
+                <br />
+                <div>
+                    <button class="btn btn-outline-primary" onclick="copyToClipboard(this, '@divID');">copy</button>
+                </div>
+                <br />
+            </div>
+        }
+        </div>
+
+        <br />
+        <div class="alert alert-info">
+            Insert the QR code(s) and URLs into your document and save/export your document as the final file. 
+            Then select the final file for registering the associated fingerprint.
+        </div>
+
+        <input id="file" type="file" onchange="onFileChanged(this)" style="display:none" />
+        <div class="text-center">
+            <button type="button" class="btn btn-primary w-100" onclick="$('#file').trigger('click')">Register File...</button>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts
+{
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('.qrsvg').each(function(){
+            var img = $(this);
+            var uri = img.attr('src');
+
+            renderSVG(uri, function (dataurl) {
+                img.attr('src', dataurl);
+            }, 256, 256);
+        });
+    });
+
+
+    function addHashCode(filename, hash) {
+        $.post('@Url.Action("RegisterDocumentHash", "Document")', { id: '@Model.ID', filename: filename, hash: hash }, function (data) {
+            document.location.href = '@Url.Action("Details","Document",new{ id = Model.ID})';
+        });
+    }
+
+    async function getFileHash(data) {
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        return hashHex;
+    }
+
+    function onFileChanged(input) {
+        var file = input.files[0];
+        var reader = new FileReader();
+        reader.onload = (function (f) {
+            $('#filename').html(f.name);
+            return function (e) {
+                    getFileHash(e.target.result).then(hashHex => addHashCode(f.name, hashHex));
+            };
+        })(file);
+
+        reader.readAsArrayBuffer(file);
+    }
+
+    function renderSVG(uri, renderedCallback, w, h) {
+
+        var image = new Image();
+        image.onload = function () {
+            var canvas = document.createElement('canvas');
+            canvas.width = w;
+            canvas.height = h;
+            var context = canvas.getContext('2d');
+            context.drawImage(image, 0, 0, w, h);
+            var png = canvas.toDataURL('image/png');
+            renderedCallback(png);
+        }
+        image.src = uri;
+    };
+
+    function copyToClipboard(btn, containerid) {
+        if (window.getSelection) {
+            if (window.getSelection().empty) { // Chrome
+                window.getSelection().empty();
+            } else if (window.getSelection().removeAllRanges) { // Firefox
+                window.getSelection().removeAllRanges();
+            }
+        } else if (document.selection) { // IE?
+            document.selection.empty();
+        }
+
+        if (document.selection) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById(containerid));
+            range.select().createTextRange();
+            document.execCommand("copy");
+            $(btn).parent().append('<span style="color:green">copied.</span>');
+        } else if (window.getSelection) {
+            var range = document.createRange();
+            range.selectNode(document.getElementById(containerid));
+            window.getSelection().addRange(range);
+            document.execCommand("copy");
+            $(btn).parent().append('<span style="color:green">copied.</span>');
+        }
+    }
+
+</script>
+
+}

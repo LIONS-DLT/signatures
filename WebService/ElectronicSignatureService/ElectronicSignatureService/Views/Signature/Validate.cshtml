@@ -1,0 +1,76 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <h2>Validate Signature against Blockchain</h2>
+        <br />
+        <input id="file" type="file" onchange="onFileChanged(this)" style="display:none" />
+        <p>
+            <button class="btn btn-outline-primary" onclick="$('#file').trigger('click')">Load from Json file</button>
+        </p>
+        <h4>Signature Data</h4>
+        <form method="post" action="@Url.Action("Validate", "Signature")">
+            <div class="mb-3">
+                <label class="form-label">Signature Blockchain Mapping ID</label>
+                <input type="text" class="form-control" id="id" name="id" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Document ID</label>
+                <input type="text" class="form-control" id="documentID" name="documentID" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Document Slot #</label>
+                <input type="text" class="form-control" id="documentSlot" name="documentSlot" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Time Stamp</label>
+                <input type="text" class="form-control" id="timeStamp" name="timeStamp" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Verification Data <small>(i.e. EMail address, Phone No.)</small></label>
+                <input type="text" class="form-control" id="verificationData" name="verificationData" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Signature Data <small>(i.e. raw data of handdrawing)</small></label>
+                <input type="text" class="form-control" id="signatureData" name="signatureData" required>
+            </div>
+            <br />
+
+            <div>
+                <button type="submit" class="btn btn-primary w-100">Check</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+
+        function onFileChanged(input) {
+            var file = input.files[0];
+            var reader = new FileReader();
+            reader.onload = (function (f) {
+                $('#filename').html(f.name);
+                return function (e) {
+                    var data = JSON.parse(e.target.result);
+
+                    $('#id').val(data.blockchainMappingID);
+                    $('#documentID').val(data.documentID);
+                    $('#documentSlot').val(data.documentSlot);
+                    $('#timeStamp').val(data.timeStamp);
+                    $('#verificationData').val(data.verificationData);
+                    $('#signatureData').val(data.signatureData);
+                };
+            })(file);
+
+            reader.readAsText(file, "UTF-8");
+        }
+
+    </script>
+}

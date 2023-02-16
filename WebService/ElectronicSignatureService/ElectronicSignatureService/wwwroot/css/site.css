@@ -1,0 +1,68 @@
+/*
+    LIONS COLORS:
+    
+    orange:         #ed7203
+    light-orange:   #f6a500
+    red:            #c3124c
+    gray/title:     #646464
+    dark-gray/text: #1d1d1b
+*/
+
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    color: #1d1d1b;
+}
+
+h1, h2, h3, h4 {
+    color: #646464;
+}
+
+.btn-outline-primary {
+    border-color: #ed7203;
+    color: #ed7203;
+}
+
+.btn-primary {
+    border-color: #ed7203;
+    background-color: #ed7203;
+    color: white;
+}
+
+.btn-primary:hover, .btn-outline-primary:hover {
+    border-color: #c3124c;
+    background-color: #c3124c;
+    color: white;
+}
+
+a {
+    color: #c3124c;
+    text-decoration:none;
+}
+
+.navbar.navbar-dark{
+    background-color:#ed7203 !important;
+    border-color:#c3124c !important;
+    border-width:3px !important;
+}
+
+.alert.alert-info {
+    background-color: #ed720320 !important;
+    border-color: #ed7203 !important;
+    color: #ed7203 !important;
+}

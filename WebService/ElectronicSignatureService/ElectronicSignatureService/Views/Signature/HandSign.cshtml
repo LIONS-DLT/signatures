@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<h4>Handsign with finger/mouse:</h4>
+<br />
+<div>
+    <canvas id="handsignCanvas" width="400" height="200">
+
+    </canvas>
+</div>
+<br />
+<div>
+    <form method="post" action="@Url.Action("Complete","Signature")">
+        <input type="hidden" name="handsign" id="handsign" />
+        <button type="submit" class="btn btn-primary w-100">Confirm</button>
+    </form>
+</div>
+<br />
+<div id="signcode" style="word-break:break-all;font-size:xx-small">
+</div>
+
+<script>
+    $(document).ready(function(){
+        initHandsignInput($('#handsignCanvas'));
+    });
+</script>

@@ -1,0 +1,132 @@
+﻿@using ElectronicSignatureService.Entities
+@using System.Security.Cryptography.X509Certificates
+
+@model Signature
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Document document = (Document)ViewData["document"]!;
+}
+
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <input id="file" type="file" onchange="onFileChanged(this)" style="display:none" />
+        <h2>@document.Name</h2>
+        <div>
+            <div><small><b>ID:</b> @document.ID</small></div>
+            <div><small><b>Blockchain Mapping ID:</b> @document.BlockchainMappingID <i class="bi bi-box"></i></small></div>
+            <div><small><b>Filename:</b> @document.Filename</small></div>
+            <div><small><b>Hash:</b> @document.HashCode <i class="bi bi-box"></i></small></div>
+            <div><small><b>Timestamp:</b> @document.TimeStamp.ToString() <i class="bi bi-box"></i></small></div>
+        </div>
+        <br />
+        <div>
+            <button class="btn btn-sm btn-outline-primary" onclick="$('#file').trigger('click')">Check file validity...</button>
+        </div>
+        <br />
+        <h3>Signature #@Model.DocumentSlot</h3>
+        <div><small><b>ID:</b> @Model.ID</small></div>
+        <div><small><b>Blockchain Mapping ID:</b> @Model.BlockchainMappingID <i class="bi bi-box"></i></small></div>
+        @if (Model.VerificationMethod == VerificationMethod.Certificate)
+        {
+            <div><small><b>Verification Method:</b> @Model.VerificationMethod.ToString()</small></div>
+        }
+        else
+        {
+            <div><small><b>Name:</b> @Model.Name</small></div>
+            <div><small><b>Verification Method:</b> @Model.VerificationMethod.ToString() - @Model.VerificationData</small></div>
+        }
+        <div><small><b>IP Address:</b> @Model.IPAddress</small></div>
+        <div><small><b>Timestamp:</b> @Model.TimeStamp.ToString() <i class="bi bi-box"></i></small></div>
+        <br />
+        @if(Model.SignatureMethod == SignatureMethod.Handwritten)
+        {
+            <canvas id="signatureCanvas" width="400" height="200">
+            </canvas>
+            <br />
+            <div style="word-wrap:break-word;font-size:x-small">@Model.SignatureData</div>
+        }
+        else if(Model.SignatureMethod == SignatureMethod.Certificate)
+        {
+            X509Certificate2 cert = new X509Certificate2(Convert.FromBase64String(Model.VerificationData));
+
+            <div>
+                <div style="font-weight:bold">Certificate</div>
+                <div><small><b>Subject:</b> @cert.Subject</small></div>
+                <div><small><b>Issuer:</b> @cert.Issuer</small></div>
+                <div><small><b>NotBefore:</b> @cert.NotBefore.ToShortDateString()</small></div>
+                <div><small><b>NotAfter:</b> @cert.NotAfter.ToShortDateString()</small></div>
+                <div><small><b>Thumbprint:</b> @cert.Thumbprint</small></div>
+            </div>
+            <div>
+                <a href="@Url.Action("DownloadCertificate","Signature", new { id = Model.ID})" class="btn btn-outline-primary btn-sm">
+                    <i class="bi bi-download"></i> Download Certificate (.crt)</a>
+            </div>
+            <br />
+            <div>
+                <div style="font-weight:bold">Signature</div>
+                <div style="word-wrap:break-word;font-size:x-small">@Model.SignatureData</div>
+            </div>
+            <br />
+        }
+        <div><small><b>Hash:</b> @Model.HashCode <i class="bi bi-box"></i></small></div>
+        <br />
+        <div>
+            <a class="btn btn-outline-primary" href="@Url.Action("DownloadJson","Signature", new { id = Model.ID })"><i class="bi bi-download"></i> Download Signature (.json)</a>
+        </div>
+        <br />
+        <br />
+        <div><small><i class="bi bi-box"></i> = in/from blockchain</small></div>
+    </div>
+</div>
+
+
+@section Scripts{
+    @if(Model.SignatureMethod == SignatureMethod.Handwritten)
+    {
+        <text>
+            <script src="~/js/sign.js"></script>
+            <script>
+                $(document).ready(function(){
+                    renderHandsign('signatureCanvas', '@Model.SignatureData');
+                });
+            </script>
+        </text>
+    }
+
+    <script>
+
+        function checkHashCode(filename, hash) {
+
+            if(hash == '@document.HashCode'){
+                alert('OK.\nThe fingerprint of the file is valid.');
+            }
+            else {
+                alert('WARNING!\nThe fingerprint of the file is NOT the same since document registration!');
+            }
+        }
+
+        async function getFileHash(data) {
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex;
+        }
+
+        function onFileChanged(input) {
+            var file = input.files[0];
+            var reader = new FileReader();
+            reader.onload = (function (f) {
+                $('#filename').html(f.name);
+                return function (e) {
+                    getFileHash(e.target.result).then(hashHex => checkHashCode(f.name, hashHex));
+                };
+            })(file);
+
+            reader.readAsArrayBuffer(file);
+        }
+    </script>
+}
