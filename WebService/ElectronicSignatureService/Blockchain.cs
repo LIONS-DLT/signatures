@@ -19,7 +19,7 @@ namespace ElectronicSignatureService
         public static bool IsMockedUp {  get; set; } = false;
 
 
-        [Function("createDocument", "uint256")]
+        [Function("createDocument", "uint64")]
         public class CreateDocumentFunction : FunctionMessage
         {
         }
@@ -27,8 +27,8 @@ namespace ElectronicSignatureService
         [Function("updateDocument", "uint")]
         public class UpdateDocumentFunction : FunctionMessage
         {
-            [Parameter("uint256", "_id", 1)]
-            public BigInteger ID { get; set; }
+            [Parameter("uint64", "_id", 1)]
+            public ulong ID { get; set; }
             [Parameter("string", "_hashCode", 2)]
             public string HashCode { get; set; } = string.Empty;
         }
@@ -36,8 +36,8 @@ namespace ElectronicSignatureService
         [Function("requestDocument", typeof(HashOutputDTO))]
         public class RequestDocumentFunction : FunctionMessage
         {
-            [Parameter("uint256", "_id", 1)]
-            public BigInteger ID { get; set; }
+            [Parameter("uint64", "_id", 1)]
+            public ulong ID { get; set; }
         }
 
         [Function("createSignature", typeof(CreateSignatureOutputDTO))]
@@ -50,15 +50,15 @@ namespace ElectronicSignatureService
         [Function("requestSignature", typeof(HashOutputDTO))]
         public class RequestSignatureFunction : FunctionMessage
         {
-            [Parameter("uint256", "_id", 1)]
-            public BigInteger ID { get; set; }
+            [Parameter("uint64", "_id", 1)]
+            public ulong ID { get; set; }
         }
 
         [FunctionOutput]
         public class CreateSignatureOutputDTO : IFunctionOutputDTO
         {
-            [Parameter("uint256", "id", 1)]
-            public BigInteger ID { get; set; }
+            [Parameter("uint64", "id", 1)]
+            public ulong ID { get; set; }
             [Parameter("uint", "timestamp", 2)]
             public long TimeStamp { get; set; }
         }
@@ -75,14 +75,14 @@ namespace ElectronicSignatureService
         [Event("DocumentCreated")]
         public class DocumentCreatedEventDTO : IEventDTO
         {
-            [Parameter("uint256", "_id", 1)]
-            public BigInteger ID { get; set; }
+            [Parameter("uint64", "_id", 1)]
+            public ulong ID { get; set; }
         }
         [Event("DocumentUpdated")]
         public class DocumentUpdatedEventDTO : IEventDTO
         {
-            [Parameter("uint256", "_id", 1)]
-            public BigInteger ID { get; set; }
+            [Parameter("uint64", "_id", 1)]
+            public ulong ID { get; set; }
 
             [Parameter("uint", "_timestamp", 2)]
             public uint TimeStamp { get; set; }
@@ -90,8 +90,8 @@ namespace ElectronicSignatureService
         [Event("SignatureCreated")]
         public class SignatureCreatedEventDTO : IEventDTO
         {
-            [Parameter("uint256", "_id", 1)]
-            public BigInteger ID { get; set; }
+            [Parameter("uint64", "_id", 1)]
+            public ulong ID { get; set; }
 
             [Parameter("uint", "_timestamp", 2)]
             public uint TimeStamp { get; set; }
@@ -161,7 +161,7 @@ namespace ElectronicSignatureService
 
             UpdateDocumentFunction input = new UpdateDocumentFunction()
             {
-                ID = BigInteger.Parse(id),
+                ID = ulong.Parse(id),
                 HashCode = hash
             };
             //var handler = web3.Eth.GetContractQueryHandler<UpdateDocumentFunction>();
@@ -217,7 +217,7 @@ namespace ElectronicSignatureService
 
             RequestDocumentFunction input = new RequestDocumentFunction()
             {
-                ID = BigInteger.Parse(id)
+                ID = ulong.Parse(id)
             };
             var handler = web3.Eth.GetContractQueryHandler<RequestDocumentFunction>();
             HashOutputDTO result = handler.QueryAsync<HashOutputDTO>(contractAddress, input).Result;
@@ -241,7 +241,7 @@ namespace ElectronicSignatureService
 
             RequestSignatureFunction input = new RequestSignatureFunction()
             {
-                ID = BigInteger.Parse(id)
+                ID = ulong.Parse(id)
             };
             var handler = web3.Eth.GetContractQueryHandler<RequestSignatureFunction>();
             HashOutputDTO result = handler.QueryAsync<HashOutputDTO>(contractAddress, input).Result;

@@ -204,6 +204,7 @@ namespace ElectronicSignatureService.Controllers
 
             string documentID = HttpContext.Session.GetString("signatureDocumentId")!;
             int slot = int.Parse(HttpContext.Session.GetString("signatureSlot")!);
+            Document document = Database.Documents.Find(documentID)!;
 
             X509Certificate2 cert = new X509Certificate2(signatureResponse.Certificate!);
 
@@ -214,6 +215,35 @@ namespace ElectronicSignatureService.Controllers
                     signatureSlot = slot,
                     alert_error = "Certificate verification failed."
                 });
+
+            ECDsa? key_ecdsa = cert.GetECDsaPublicKey();
+            DSA? key_dsa = cert.GetDSAPublicKey();
+            RSA? key_rsa = cert.GetRSAPublicKey();
+
+            byte[] dataToSign = Encoding.UTF8.GetBytes(document.HashCode);
+            bool isValid = false;
+
+            if (key_rsa != null)
+            {
+                isValid = key_rsa.VerifyData(dataToSign, signatureResponse.Signature!, HashAlgorithmName.SHA512, RSASignaturePadding.Pkcs1);
+            }
+            else if (key_ecdsa != null)
+            {
+                isValid = key_ecdsa.VerifyData(dataToSign, signatureResponse.Signature!, HashAlgorithmName.SHA512);
+            }
+            else if (key_dsa != null)
+            {
+                isValid = key_dsa.VerifyData(dataToSign, signatureResponse.Signature!, HashAlgorithmName.SHA512);
+            }
+            
+            if(!isValid)
+                return RedirectToAction("Create", "Signature", new
+                {
+                    documentId = documentID,
+                    signatureSlot = slot,
+                    alert_error = "Signature invalid or algorithm not supported."
+                });
+
 
             string name = HttpContext.Session.GetString("signatureName")!;
 
