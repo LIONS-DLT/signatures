@@ -52,6 +52,8 @@
         else if(Model.SignatureMethod == SignatureMethod.Certificate)
         {
             X509Certificate2 cert = new X509Certificate2(Convert.FromBase64String(Model.VerificationData));
+            X509Chain chain = new X509Chain();
+            bool isValid = chain.Build(cert);
 
             <div>
                 <div style="font-weight:bold">Certificate</div>
@@ -60,6 +62,12 @@
                 <div><small><b>NotBefore:</b> @cert.NotBefore.ToShortDateString()</small></div>
                 <div><small><b>NotAfter:</b> @cert.NotAfter.ToShortDateString()</small></div>
                 <div><small><b>Thumbprint:</b> @cert.Thumbprint</small></div>
+                <div><small><b>Valid:</b> @isValid</small></div>
+                <div><small><b>Chain:</b></small></div>
+                @foreach(var element in chain.ChainElements)
+                {
+                    <div><small>- @element.Certificate.Subject</small></div>
+                }
             </div>
             <div>
                 <a href="@Url.Action("DownloadCertificate","Signature", new { id = Model.ID})" class="btn btn-outline-primary btn-sm">
