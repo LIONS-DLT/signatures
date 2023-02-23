@@ -62,8 +62,8 @@
                 <div><small><b>NotBefore:</b> @cert.NotBefore.ToShortDateString()</small></div>
                 <div><small><b>NotAfter:</b> @cert.NotAfter.ToShortDateString()</small></div>
                 <div><small><b>Thumbprint:</b> @cert.Thumbprint</small></div>
-                <div><small><b>Valid:</b> @isValid</small></div>
-                <div><small><b>Chain:</b></small></div>
+                <div><small><b>Currently valid:</b> @isValid</small></div>
+                <div><small><b>PKI chain:</b></small></div>
                 @foreach(var element in chain.ChainElements)
                 {
                     <div><small>- @element.Certificate.Subject</small></div>
