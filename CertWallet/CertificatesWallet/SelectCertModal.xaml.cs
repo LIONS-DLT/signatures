@@ -1,3 +1,5 @@
+using Microsoft.Maui.Controls.Internals;
+
 namespace CertificatesWallet;
 
 public partial class SelectCertModal : ContentPage
@@ -27,7 +29,7 @@ public partial class SelectCertModal : ContentPage
                     App.Current.MainPage.Navigation.PopModalAsync();
                     _callback(filepath);
                 };
-                layout.Add(btn);
+                layout.Insert(layout.IndexOf(btnCancel), btn);
             }
         }
     }

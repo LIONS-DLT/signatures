@@ -19,6 +19,7 @@
                 HorizontalOptions="Center" />
             
             <Button
+                x:Name="btnCancel"
                 Text="Cancel"
                 Clicked="OnCancelClick"
                 Padding="20"

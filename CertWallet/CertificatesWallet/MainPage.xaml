@@ -38,6 +38,11 @@
                 Clicked="OnAddClick"
                 Padding="20"
                 HorizontalOptions="Fill" />
+            <Button
+                Text="+ Create Self Signed"
+                Clicked="OnCreateClick"
+                Padding="20"
+                HorizontalOptions="Fill" />
 
             <!--<Button
                 Text="MichaelHofmeier.pfx"

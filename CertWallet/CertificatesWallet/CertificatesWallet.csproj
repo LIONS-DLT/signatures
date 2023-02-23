@@ -130,6 +130,9 @@
 	  <MauiXaml Update="CertPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="CreateModal.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="PasswordModal.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -124,7 +124,7 @@ namespace ElectronicSignatureService.Controllers
                 {
                     documentId = documentID,
                     signatureSlot = slot,
-                    alert_error = "Certificate verification failed."
+                    alert_error = "Certificate verification failed. Note that self-signed certificates are not allowed."
                 });
 
             data = cert.Export(X509ContentType.Cert);

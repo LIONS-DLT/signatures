@@ -176,5 +176,13 @@ public partial class MainPage : ContentPage
             App.Current.MainPage.Navigation.PushAsync(new CertPage(cert));
         }));
     }
+
+    private void OnCreateClick(object sender, EventArgs e)
+    {
+        App.Current.MainPage.Navigation.PushModalAsync(new CreateModal(() =>
+        {
+            loadList();
+        }));
+    }
 }
 
