@@ -51,7 +51,6 @@ public partial class CreateModal : ContentPage
 
         int days = int.Parse(daysEntry.Text);
 
-
         var rsa = RSA.Create(4096);
         var certRequest = new CertificateRequest(subject, rsa, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
 
