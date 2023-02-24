@@ -48,12 +48,11 @@ contract SignaturesContract {
         return (documents[_id].hashCode, documents[_id].timestamp);
     }
 
-    function createSignature(string memory _hashCode) public returns (uint64 id, uint timestamp) {
-        uint time = block.timestamp;
+
+    function createSignature(string memory _hashCode) public {
         lastSignatureId++;
-        signatures[lastSignatureId] = Signature(lastSignatureId, _hashCode, time);
-        emit SignatureCreated(lastSignatureId, time);
-        return (lastSignatureId, time);
+        signatures[lastSignatureId] = Signature(lastSignatureId, _hashCode, block.timestamp);
+        emit SignatureCreated(lastSignatureId, block.timestamp);
     }
     function requestSignature(uint64 _id) public view returns (string memory hashCode, uint timestamp) {
         return (signatures[_id].hashCode, signatures[_id].timestamp);
