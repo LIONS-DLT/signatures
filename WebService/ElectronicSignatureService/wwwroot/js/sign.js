@@ -126,11 +126,11 @@ function initHandsignInput(obj) {
         var x = Math.round(drawX * 400 / w);
         var y = Math.round(drawY * 200 / h);
 
-        ctx.lineTo(drawX, drawY);
-        ctx.stroke();
-        handsign += "," + x.toString() + ":" + y.toString();
-        input.val(handsign);
-        $('#signcode').html(handsign);
+        //ctx.lineTo(drawX, drawY);
+        //ctx.stroke();
+        //handsign += "," + x.toString() + ":" + y.toString();
+        //input.val(handsign);
+        //$('#signcode').html(handsign);
         
         ctx.closePath();
         isDown = false;
@@ -168,7 +168,12 @@ function initHandsignInput(obj) {
         canvas.dispatchEvent(mouseEvent);
     }, false);
     canvas.addEventListener("touchend", function (e) {
-        var mouseEvent = new MouseEvent("mouseup", {});
+        mousePos = getTouchPos(canvas, e);
+        var touch = e.touches[0];
+        var mouseEvent = new MouseEvent("mouseup", {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
         canvas.dispatchEvent(mouseEvent);
     }, false);
     canvas.addEventListener("touchmove", function (e) {
