@@ -7,51 +7,46 @@
     <div class="col-lg-8 offset-lg-2">
         <div class="text-center">
             <div><img src="~/img/lions_q.svg" width="256" /></div>
-            <h2 style="color:#ed7203"><b><i class="bi bi-qr-code-scan"></i> @AppInit.ProductName</b> - Electronic Signatures</h2>
+            <h2 style="color:#ed7203"><b><i class="bi bi-qr-code-scan"></i> @AppInit.ProductName</b> - @Strings.Label_ElectronicSignatures</h2>
         </div>
         <br />
         <div class="row">
             <div class="col-lg-6 mb-5">
-                <h4><i class="bi bi-database"></i> Blockchain Technology</h4>
+                <h4><i class="bi bi-database"></i> @Strings.Home_BlockchainTechnology</h4>
                 <p>
-                    The digital fingerprint of your signature, together with a timestamp, is stored in a blockchain as unchangeable proof of data consistency.
-                    This means you can trust the signature regardless of the service provider.
+                    @Strings.Home_BlockchainTechnology_Text
                 </p>
                 <p>
-                    <a href="#" class="btn btn-sm btn-outline-primary">read more...</a>
+                    <a href="#" class="btn btn-sm btn-outline-primary">@Strings.Label_ReadMore</a>
                 </p>
             </div>
             <div class="col-lg-6 mb-5">
-                <h4><i class="bi bi-shield"></i> Data Privacy</h4>
+                <h4><i class="bi bi-shield"></i> @Strings.Home_DataPrivacy</h4>
                 <p>
-                    You do not upload any documents, only the fingerprint of the file is stored.
-                    This means that you do not have to entrust your confidential documents to a third party, but can send the files directly to your recipients in the usual way.
+                    @Strings.Home_DataPrivacy_Text
                 </p>
                 <p>
-                    <a href="#" class="btn btn-sm btn-outline-primary">read more...</a>
+                    <a href="#" class="btn btn-sm btn-outline-primary">@Strings.Label_ReadMore</a>
                 </p>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6 mb-5">
-                <h4><i class="bi bi-qr-code"></i> QR Code and URL based</h4>
+                <h4><i class="bi bi-qr-code"></i> @Strings.Home_QRbased</h4>
                 <p>
-                    Insert QR codes and links into your document as placeholders for signatures.
-                    These can then be used to create and verify signatures.
-                    This allows you to work with your usual tools.
+                    @Strings.Home_QRbased_Text
                 </p>
                 <p>
-                    <a href="#" class="btn btn-sm btn-outline-primary">read more...</a>
+                    <a href="#" class="btn btn-sm btn-outline-primary">@Strings.Label_ReadMore</a>
                 </p>
             </div>
             <div class="col-lg-6 mb-5">
-                <h4><i class="bi bi-person-badge"></i> Self Sovereign Identities</h4>
+                <h4><i class="bi bi-person-badge"></i> @Strings.Home_SSI</h4>
                 <p>
-                    This application supports identification and authentication using self-sovereign identities.
-                    All compatible DID wallets can be used for this purpose.
+                    @Strings.Home_SSI_Text
                 </p>
                 <p>
-                    <a href="#" class="btn btn-sm btn-outline-primary">read more...</a>
+                    <a href="#" class="btn btn-sm btn-outline-primary">@Strings.Label_ReadMore</a>
                 </p>
             </div>
         </div>
@@ -59,13 +54,13 @@
         @if (Context.IsLoggedIn())
         {
             <div class="text-center">
-                <a class="btn btn-lg btn-primary w-100" href="@Url.Action("Index","Document")">My Documents...</a>
+                <a class="btn btn-lg btn-primary w-100" href="@Url.Action("Index","Document")">@Strings.Label_MyDocuments...</a>
             </div>
         }
         else
         {
             <div class="text-center">
-                <a class="btn btn-lg btn-primary w-100" href="@Url.Action("Register","Account")">Get started!</a>
+                <a class="btn btn-lg btn-primary w-100" href="@Url.Action("Register","Account")">@Strings.Label_GetStarted</a>
             </div>
         }
     </div>

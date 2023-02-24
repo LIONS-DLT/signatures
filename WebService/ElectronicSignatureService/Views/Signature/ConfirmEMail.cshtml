@@ -4,19 +4,19 @@
 @{
 }
 
-<h4>Confirm E-Mail address:</h4>
+<h4>@Strings.Label_ConfirmEmailAddress:</h4>
 <br />
 <div class="alert alert-info">
-    We have sent you an email with a confirmation code. Please also check your spam folder.
+    @Strings.Info_ConfirmationEMail
     (TEST-CODE: 1234567890)
 </div>
 <br />
 <div class="mb-3">
-    <label for="confirmationcode" class="form-label">Confirmation code</label>
+    <label for="confirmationcode" class="form-label">@Strings.Label_ConfirmationCode</label>
     <input type="text" class="form-control" id="confirmationcode" name="confirmationcode" placeholder="code ..." required>
 </div>
 <br />
 
 <div>
-    <button type="button" class="btn btn-primary w-100" onclick="confirmationCodeSubmit('@Url.Action("ConfirmCode","Signature")')">Next</button>
+    <button type="button" class="btn btn-primary w-100" onclick="confirmationCodeSubmit('@Url.Action("ConfirmCode","Signature")')">@Strings.Label_Next</button>
 </div>

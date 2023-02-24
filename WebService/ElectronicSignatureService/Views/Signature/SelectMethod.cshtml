@@ -4,19 +4,17 @@
 @{
 }
 
-<h4>Identity validation method:</h4>
+<h4>@Strings.Label_IdentityValidationMethod:</h4>
 <br />
 <div>
     <div class="form-check">
         <input class="form-check-input" type="radio" name="methodRadio" id="methodRadioEmail" checked>
         <label class="form-check-label" for="methodRadioEmail">
-            <i class="bi bi-envelope"></i> E-Mail
+            <i class="bi bi-envelope"></i> @Strings.Label_EMail
         </label>
     </div>
     <div class="fst-italic small">
-        If you choose the authentication method via e-mail, you will receive an e-mail with a confirmation code, 
-        that you will have to enter in the next step. 
-        If you do not receive a message, please consider checking your spam folder.
+        @Strings.Info_Method_EMail
     </div>
 </div>
 <br />
@@ -24,11 +22,11 @@
     <div class="form-check">
         <input class="form-check-input" type="radio" name="methodRadio" id="methodRadioLogin">
         <label class="form-check-label" for="methodRadioLogin">
-            <i class="bi bi-person"></i> Login
+            <i class="bi bi-person"></i> @Strings.Label_Login
         </label>
     </div>
     <div class="fst-italic small">
-        If you have an account for this service, you can verify yourself using your login credentials.
+        @Strings.Info_Method_Login
     </div>
 </div>
 <br />
@@ -36,12 +34,11 @@
     <div class="form-check">
         <input class="form-check-input" type="radio" name="methodRadio" id="methodRadioCertificate">
         <label class="form-check-label" for="methodRadioCertificate">
-            <i class="bi bi-person"></i> Certificate
+            <i class="bi bi-person"></i> @Strings.Label_Certificate
         </label>
     </div>
     <div class="fst-italic small">
-        You can provide a certificate and a password to sign cryptographically. 
-        If your are not comfortable uploading your certificate and your password, you can use LIONS Certificates Wallet instead.
+        @Strings.Info_Method_Certificate
     </div>
 </div>
 <br />
@@ -49,11 +46,11 @@
     <div class="form-check">
         <input class="form-check-input" type="radio" name="methodRadio" id="methodRadioWallet">
         <label class="form-check-label" for="methodRadioWallet">
-            <i class="bi bi-person"></i> LIONS Certificates Wallet
+            <i class="bi bi-person"></i> @Strings.Label_CertificateWallet
         </label>
     </div>
     <div class="fst-italic small">
-        You can use the certificates wallet to store your certificates and authenticate and sign locally on your device keeping your private key private.
+        @Strings.Info_Method_CertWallet
     </div>
 </div>
 <br />
@@ -71,5 +68,5 @@
 </div>
 <br />
 <div>
-    <button type="button" class="btn btn-primary w-100" onclick="methodFormSubmit()">Next</button>
+    <button type="button" class="btn btn-primary w-100" onclick="methodFormSubmit()">@Strings.Label_Next</button>
 </div>

@@ -5,18 +5,18 @@
 }
 
 
-<h4>Account credentials:</h4>
+<h4>@Strings.Label_AccountCredentials:</h4>
 <br />
 <div class="mb-3">
-    <label for="emailInput" class="form-label">E-Mail Address</label>
+    <label for="emailInput" class="form-label">@Strings.Label_EMail</label>
     <input type="email" class="form-control" id="emailInput" name="email" placeholder="your@mail.address ..." required>
 </div>
 <div class="mb-3">
-    <label for="passwordInput" class="form-label">Password</label>
+    <label for="passwordInput" class="form-label">@Strings.Label_Password</label>
     <input type="password" class="form-control" id="passwordInput" name="password" placeholder="password ..." required>
 </div>
 <br />
 
 <div>
-    <button type="button" class="btn btn-primary w-100" onclick="loginFormSubmit('@Url.Action("ConfirmLogin","Signature")')">Next</button>
+    <button type="button" class="btn btn-primary w-100" onclick="loginFormSubmit('@Url.Action("ConfirmLogin","Signature")')">@Strings.Label_Next</button>
 </div>

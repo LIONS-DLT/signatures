@@ -1,4 +1,9 @@
-﻿namespace ElectronicSignatureService
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Org.BouncyCastle.Asn1.Ocsp;
+using System.Globalization;
+
+namespace ElectronicSignatureService
 {
     public static class AppInit
     {
@@ -14,6 +19,41 @@
             AppConfig.Init();
             Database.Init();
             Blockchain.Init();
+        }
+
+
+        public static void OnActionExecuting(Controller controller, ActionExecutingContext context)
+        {
+            // handle optional alert parameters
+            controller.ViewData["alert_success"] = controller.Request.Query["alert_success"].FirstOrDefault();
+            controller.ViewData["alert_error"] = controller.Request.Query["alert_error"].FirstOrDefault();
+            controller.ViewData["alert_info"] = controller.Request.Query["alert_info"].FirstOrDefault();
+
+            // set culture from session / browser settings
+
+            CultureInfo culture = CultureInfo.InvariantCulture;
+            string? sessionCulture = controller.HttpContext.Session.GetString("CultureInfo");
+
+            if (!string.IsNullOrEmpty(sessionCulture))
+            {
+                culture = new CultureInfo(sessionCulture);
+            }
+            else
+            {
+                string? lang = controller.Request.Headers["Accept-Language"];
+                if (!string.IsNullOrEmpty(lang))
+                {
+                    var firstLang = lang.Split(',').FirstOrDefault();
+                    if (!string.IsNullOrEmpty(firstLang))
+                        culture = new CultureInfo(firstLang);
+                }
+
+
+                controller.HttpContext.Session.SetString("CultureInfo", culture.TwoLetterISOLanguageName);
+            }
+
+            CultureInfo.CurrentCulture = culture;
+            CultureInfo.CurrentUICulture = culture;
         }
     }
 }

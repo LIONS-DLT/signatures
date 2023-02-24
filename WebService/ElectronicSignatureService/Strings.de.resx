@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Home_BlockchainTechnology" xml:space="preserve">
+    <value>Blockchain-Technologie</value>
+  </data>
+  <data name="Home_BlockchainTechnology_Text" xml:space="preserve">
+    <value>Der digitale Fingerabdruck Ihrer Unterschrift wird zusammen mit einem Zeitstempel in einer Blockchain als unveränderlicher Nachweis der Datenkonsistenz gespeichert.
+Das bedeutet, dass Sie der Unterschrift unabhängig vom Dienstanbieter vertrauen können.</value>
+  </data>
+  <data name="Home_DataPrivacy" xml:space="preserve">
+    <value>Datenschutz</value>
+  </data>
+  <data name="Home_DataPrivacy_Text" xml:space="preserve">
+    <value>Sie laden keine Dokumente hoch, sondern es wird nur der Fingerabdruck der Datei gespeichert.
+Das bedeutet, dass Sie Ihre vertraulichen Dokumente nicht einem Dritten anvertrauen müssen, sondern die Dateien auf dem üblichen Weg direkt an Ihre Empfänger senden können.</value>
+  </data>
+  <data name="Home_QRbased" xml:space="preserve">
+    <value>QR-Code und URL-basiert</value>
+  </data>
+  <data name="Home_QRbased_Text" xml:space="preserve">
+    <value>Fügen Sie QR-Codes und Links als Platzhalter für Signaturen in Ihr Dokument ein.
+Diese können dann zum Erstellen und Prüfen von Signaturen verwendet werden.
+So können Sie mit Ihren gewohnten Werkzeugen arbeiten.</value>
+  </data>
+  <data name="Home_SSI" xml:space="preserve">
+    <value>Selbstsouveräne Identitäten</value>
+  </data>
+  <data name="Home_SSI_Text" xml:space="preserve">
+    <value>Diese Anwendung unterstützt die Identifizierung und Authentifizierung mit selbstsouveränen Identitäten.
+Alle kompatiblen DID-Geldbörsen können zu diesem Zweck verwendet werden.</value>
+  </data>
+  <data name="Info_ConfirmationEMail" xml:space="preserve">
+    <value>Wir haben Ihnen einen Bestätigungscode per E-Mail gesendet. Bitte prüfen Sie auch Ihren Spam-Ordner.</value>
+  </data>
+  <data name="Info_InserQRs" xml:space="preserve">
+    <value>Fügen Sie den/die QR-Code(s) und URLs in Ihr Dokument ein und speichern/exportieren Sie Ihr Dokument als endgültige Datei. 
+Wählen Sie dann die endgültige Datei aus, um den zugehörigen Fingerabdruck zu registrieren.</value>
+  </data>
+  <data name="Info_Method_Certificate" xml:space="preserve">
+    <value>Sie können ein Zertifikat und ein Passwort für die kryptografische Signatur verwenden. 
+Wenn Sie Ihr Zertifikat und Ihr Passwort nicht hochladen möchten, können Sie stattdessen LIONS Zertifikate-Wallet verwenden.</value>
+  </data>
+  <data name="Info_Method_CertWallet" xml:space="preserve">
+    <value>Sie können die Zertifikate-Wallet verwenden, um Ihre Zertifikate zu speichern und lokal auf Ihrem Gerät zu authentifizieren und zu signieren, wobei Ihr privater Schlüssel geheim bleibt.</value>
+  </data>
+  <data name="Info_Method_EMail" xml:space="preserve">
+    <value>Wenn Sie die Authentifizierungsmethode per E-Mail wählen, erhalten Sie eine E-Mail mit einem Bestätigungscode, den Sie im nächsten Schritt eingeben müssen. Sollten Sie keine Nachricht erhalten, überprüfen Sie bitte Ihren Spam-Ordner.</value>
+  </data>
+  <data name="Info_Method_Login" xml:space="preserve">
+    <value>Wenn Sie ein Konto für diesen Dienst haben, können Sie sich mit Ihren Anmeldedaten verifizieren.</value>
+  </data>
+  <data name="Info_NewDocument" xml:space="preserve">
+    <value>Geben Sie einen möglichst eindeutigen Namen für das zu registrierende Dokument an, damit eine eindeutige Zuordnung für die Empfänger möglich ist. 
+Geben Sie auch die Anzahl der Platzhalter an, die für verschiedene Signaturen für Ihr Dokument benötigt werden.</value>
+  </data>
+  <data name="Label_AccountCredentials" xml:space="preserve">
+    <value>Anmeldeinformationen</value>
+  </data>
+  <data name="Label_AllMyDocuments" xml:space="preserve">
+    <value>Alle meine Dokumente</value>
+  </data>
+  <data name="Label_BlockchainMappingID" xml:space="preserve">
+    <value>Blockchain Mapping ID</value>
+  </data>
+  <data name="Label_Certificate" xml:space="preserve">
+    <value>Zertifikat</value>
+  </data>
+  <data name="Label_CertificateWallet" xml:space="preserve">
+    <value>LIONS Zertifikate-Wallet</value>
+  </data>
+  <data name="Label_CheckFileValidity" xml:space="preserve">
+    <value>Datei auf Echtheit prüfen...</value>
+  </data>
+  <data name="Label_Confirm" xml:space="preserve">
+    <value>Bestätigen</value>
+  </data>
+  <data name="Label_ConfirmationCode" xml:space="preserve">
+    <value>Bestätigungscode</value>
+  </data>
+  <data name="Label_ConfirmEmailAddress" xml:space="preserve">
+    <value>E-Mail-Adressebestätigen</value>
+  </data>
+  <data name="Label_Copy" xml:space="preserve">
+    <value>kopieren</value>
+  </data>
+  <data name="Label_Date" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="Label_Document" xml:space="preserve">
+    <value>Dokument</value>
+  </data>
+  <data name="Label_DocumentName" xml:space="preserve">
+    <value>Dokumentenbezeichnung</value>
+  </data>
+  <data name="Label_Documents" xml:space="preserve">
+    <value>Dokumente</value>
+  </data>
+  <data name="Label_DownloadCert" xml:space="preserve">
+    <value>Zertifikat herunterladen</value>
+  </data>
+  <data name="Label_DownloadSignature" xml:space="preserve">
+    <value>Unterschrift herunterladen</value>
+  </data>
+  <data name="Label_ElectronicSignatures" xml:space="preserve">
+    <value>Elektronische Unterschriften</value>
+  </data>
+  <data name="Label_EMail" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="Label_Filename" xml:space="preserve">
+    <value>Dateiname</value>
+  </data>
+  <data name="Label_ForCertificate" xml:space="preserve">
+    <value>für Zertifikat</value>
+  </data>
+  <data name="Label_GetStarted" xml:space="preserve">
+    <value>Jetzt loslegen!</value>
+  </data>
+  <data name="Label_HandsignWithFingerMouse" xml:space="preserve">
+    <value>Handsignatur mit Finger/Maus</value>
+  </data>
+  <data name="Label_Hash" xml:space="preserve">
+    <value>Hashwert</value>
+  </data>
+  <data name="Label_Home" xml:space="preserve">
+    <value>Startseite</value>
+  </data>
+  <data name="Label_ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Label_IdentityValidationMethod" xml:space="preserve">
+    <value>Methode zur Identitätsprüfung</value>
+  </data>
+  <data name="Label_InFromBlockchain" xml:space="preserve">
+    <value>in/aus Blockchain</value>
+  </data>
+  <data name="Label_IPAddress" xml:space="preserve">
+    <value>IP-Addresse</value>
+  </data>
+  <data name="Label_Latest" xml:space="preserve">
+    <value>Letzte</value>
+  </data>
+  <data name="Label_Login" xml:space="preserve">
+    <value>Anmelden</value>
+  </data>
+  <data name="Label_Logout" xml:space="preserve">
+    <value>Abmelden</value>
+  </data>
+  <data name="Label_MyDocuments" xml:space="preserve">
+    <value>Meine Dokumente</value>
+  </data>
+  <data name="Label_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Label_NewDocument" xml:space="preserve">
+    <value>Neues Dokument</value>
+  </data>
+  <data name="Label_Next" xml:space="preserve">
+    <value>Weiter</value>
+  </data>
+  <data name="Label_NumberOfSlots" xml:space="preserve">
+    <value>Anzahl an Unterschriften/Platzhaltern</value>
+  </data>
+  <data name="Label_Password" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="Label_Privacy" xml:space="preserve">
+    <value>Datenschutz</value>
+  </data>
+  <data name="Label_ReadMore" xml:space="preserve">
+    <value>mehr erfahren...</value>
+  </data>
+  <data name="Label_Register" xml:space="preserve">
+    <value>Registrieren</value>
+  </data>
+  <data name="Label_RegisterFile" xml:space="preserve">
+    <value>Datei-Fingerabdruck registrieren...</value>
+  </data>
+  <data name="Label_Sign" xml:space="preserve">
+    <value>Unterschreiben...</value>
+  </data>
+  <data name="Label_Signature" xml:space="preserve">
+    <value>Unterschrift</value>
+  </data>
+  <data name="Label_SignatureQR_Hint" xml:space="preserve">
+    <value>Zum Hinzufügen oder Prüfen von Unterschriften den Link oder QR-Code benutzen.</value>
+  </data>
+  <data name="Label_Signatures" xml:space="preserve">
+    <value>Unterschriften</value>
+  </data>
+  <data name="Label_SignatureUrlsQRs" xml:space="preserve">
+    <value>Unterschrift-URLs / QR-Codes</value>
+  </data>
+  <data name="Label_SignersData" xml:space="preserve">
+    <value>Daten des Unterzeichners</value>
+  </data>
+  <data name="Label_SignWithCert" xml:space="preserve">
+    <value>Mit Zertifikat unterschreiben</value>
+  </data>
+  <data name="Label_Slot" xml:space="preserve">
+    <value>Platzhalter</value>
+  </data>
+  <data name="Label_Timestamp" xml:space="preserve">
+    <value>Zeitstempel</value>
+  </data>
+  <data name="Label_ValidateSignature" xml:space="preserve">
+    <value>Unterschrift prüfen</value>
+  </data>
+  <data name="Label_VerificationMethod" xml:space="preserve">
+    <value>Verifizierungsmethode</value>
+  </data>
+</root>

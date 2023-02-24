@@ -4,20 +4,20 @@
 @{
 }
 
-<h4>Certificate:</h4>
+<h4>@Strings.Label_Certificate:</h4>
 <br />
 <form action="@Url.Action("CompleteWithCertificate","Signature")" method="post" enctype="multipart/form-data">
     <div class="mb-3">
-        <label for="certfileInput" class="form-label">Certificate <small>(*.p12, *.pfx)</small></label>
+        <label for="certfileInput" class="form-label">@Strings.Label_Certificate <small>(*.p12, *.pfx)</small></label>
         <input type="file" class="form-control" id="certfileInput" name="certfile" placeholder="certificate ..." required>
     </div>
     <div class="mb-3">
-        <label for="certPasswordInput" class="form-label">Password <small>(for certificate)</small></label>
+        <label for="certPasswordInput" class="form-label">@Strings.Label_Password <small>(@Strings.Label_ForCertificate)</small></label>
         <input type="password" class="form-control" id="certPasswordInput" name="password" placeholder="password ..." required>
     </div>
     <br />
 
     <div>
-        <button type="submit" class="btn btn-primary w-100">Sign with certificate</button>
+        <button type="submit" class="btn btn-primary w-100">@Strings.Label_SignWithCert</button>
     </div>
 </form>

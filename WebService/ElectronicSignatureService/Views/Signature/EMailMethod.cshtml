@@ -5,18 +5,18 @@
 }
 
 
-<h4>Signer data:</h4>
+<h4>@Strings.Label_SignersData:</h4>
 <br />
 <div class="mb-3">
-    <label for="nameInput" class="form-label">Name</label>
+    <label for="nameInput" class="form-label">@Strings.Label_Name</label>
     <input type="text" class="form-control" id="nameInput" name="name" placeholder="your full name ..." required>
 </div>
 <div class="mb-3">
-    <label for="emailInput" class="form-label">E-Mail Address</label>
+    <label for="emailInput" class="form-label">@Strings.Label_EMail</label>
     <input type="email" class="form-control" id="emailInput" name="email" placeholder="your@mail.address ..." required>
 </div>
 <br />
 
 <div>
-    <button type="button" class="btn btn-primary w-100" onclick="emailFormSubmit('@Url.Action("ConfirmEMail","Signature")')">Next</button>
+    <button type="button" class="btn btn-primary w-100" onclick="emailFormSubmit('@Url.Action("ConfirmEMail","Signature")')">@Strings.Label_Next</button>
 </div>

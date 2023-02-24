@@ -12,23 +12,23 @@
 <div class="row">
     <div class="col-lg-8 offset-lg-2">
         <input id="file" type="file" onchange="onFileChanged(this)" style="display:none" />
-        <h2>Document - @Model.Name</h2>
+        <h2>@Strings.Label_Document - @Model.Name</h2>
         <div>
-            <div><small><b>ID:</b> @Model.ID</small></div>
-            <div><small><b>Filename:</b> @Model.Filename</small></div>
-            <div><small><b>Hash:</b> @Model.HashCode</small></div>
-            <div><small><b>Timestamp:</b> @Model.TimeStamp.ToString()</small></div>
+            <div><small><b>@Strings.Label_ID:</b> @Model.ID</small></div>
+            <div><small><b>@Strings.Label_Filename:</b> @Model.Filename</small></div>
+            <div><small><b>@Strings.Label_Hash:</b> @Model.HashCode</small></div>
+            <div><small><b>@Strings.Label_Timestamp:</b> @Model.TimeStamp.ToString()</small></div>
         </div>
         <br />
         <div>
-            <button class="btn btn-sm btn-outline-primary" onclick="$('#file').trigger('click')">Check file validity...</button>
+            <button class="btn btn-sm btn-outline-primary" onclick="$('#file').trigger('click')">@Strings.Label_CheckFileValidity</button>
         </div>
         <br />
-        <h3>Signature #@slot</h3>
+        <h3>@Strings.Label_Signature #@slot</h3>
         <br />
         <div id="formcontainer">
             <div>
-                <button type="button" class="btn btn-lg btn-primary w-100" onclick="$('#formcontainer').load('@Url.Action("SelectMethod","Signature")')">Sign...</button>
+                <button type="button" class="btn btn-lg btn-primary w-100" onclick="$('#formcontainer').load('@Url.Action("SelectMethod","Signature")')">@Strings.Label_Sign</button>
             </div>
         </div>
     </div>

@@ -16,31 +16,31 @@
         <input id="file" type="file" onchange="onFileChanged(this)" style="display:none" />
         <h2>@document.Name</h2>
         <div>
-            <div><small><b>ID:</b> @document.ID</small></div>
-            <div><small><b>Blockchain Mapping ID:</b> @document.BlockchainMappingID <i class="bi bi-box"></i></small></div>
-            <div><small><b>Filename:</b> @document.Filename</small></div>
-            <div><small><b>Hash:</b> @document.HashCode <i class="bi bi-box"></i></small></div>
-            <div><small><b>Timestamp:</b> @document.TimeStamp.ToString() <i class="bi bi-box"></i></small></div>
+            <div><small><b>@Strings.Label_ID:</b> @document.ID</small></div>
+            <div><small><b>@Strings.Label_BlockchainMappingID:</b> @document.BlockchainMappingID <i class="bi bi-box"></i></small></div>
+            <div><small><b>@Strings.Label_Filename:</b> @document.Filename</small></div>
+            <div><small><b>@Strings.Label_Hash:</b> @document.HashCode <i class="bi bi-box"></i></small></div>
+            <div><small><b>@Strings.Label_Timestamp:</b> @document.TimeStamp.ToString() <i class="bi bi-box"></i></small></div>
         </div>
         <br />
         <div>
-            <button class="btn btn-sm btn-outline-primary" onclick="$('#file').trigger('click')">Check file validity...</button>
+            <button class="btn btn-sm btn-outline-primary" onclick="$('#file').trigger('click')">@Strings.Label_CheckFileValidity</button>
         </div>
         <br />
-        <h3>Signature #@Model.DocumentSlot</h3>
-        <div><small><b>ID:</b> @Model.ID</small></div>
-        <div><small><b>Blockchain Mapping ID:</b> @Model.BlockchainMappingID <i class="bi bi-box"></i></small></div>
+        <h3>@Strings.Label_Signature #@Model.DocumentSlot</h3>
+        <div><small><b>@Strings.Label_ID:</b> @Model.ID</small></div>
+        <div><small><b>@Strings.Label_BlockchainMappingID:</b> @Model.BlockchainMappingID <i class="bi bi-box"></i></small></div>
         @if (Model.VerificationMethod == VerificationMethod.Certificate)
         {
-            <div><small><b>Verification Method:</b> @Model.VerificationMethod.ToString()</small></div>
+            <div><small><b>@Strings.Label_VerificationMethod:</b> @Model.VerificationMethod.ToString()</small></div>
         }
         else
         {
-            <div><small><b>Name:</b> @Model.Name</small></div>
-            <div><small><b>Verification Method:</b> @Model.VerificationMethod.ToString() - @Model.VerificationData</small></div>
+            <div><small><b>@Strings.Label_Name:</b> @Model.Name</small></div>
+            <div><small><b>@Strings.Label_VerificationMethod:</b> @Model.VerificationMethod.ToString() - @Model.VerificationData</small></div>
         }
-        <div><small><b>IP Address:</b> @Model.IPAddress</small></div>
-        <div><small><b>Timestamp:</b> @Model.TimeStamp.ToString() <i class="bi bi-box"></i></small></div>
+        <div><small><b>@Strings.Label_IPAddress:</b> @Model.IPAddress</small></div>
+        <div><small><b>@Strings.Label_Timestamp:</b> @Model.TimeStamp.ToString() <i class="bi bi-box"></i></small></div>
         <br />
         @if(Model.SignatureMethod == SignatureMethod.Handwritten)
         {
@@ -56,7 +56,7 @@
             bool isValid = chain.Build(cert);
 
             <div>
-                <div style="font-weight:bold">Certificate</div>
+                <div style="font-weight:bold">@Strings.Label_Certificate</div>
                 <div><small><b>Subject:</b> @cert.Subject</small></div>
                 <div><small><b>Issuer:</b> @cert.Issuer</small></div>
                 <div><small><b>NotBefore:</b> @cert.NotBefore.ToShortDateString()</small></div>
@@ -71,23 +71,24 @@
             </div>
             <div>
                 <a href="@Url.Action("DownloadCertificate","Signature", new { id = Model.ID})" class="btn btn-outline-primary btn-sm">
-                    <i class="bi bi-download"></i> Download Certificate (.crt)</a>
+                    <i class="bi bi-download"></i> @Strings.Label_DownloadCert (.crt)
+                </a>
             </div>
             <br />
             <div>
-                <div style="font-weight:bold">Signature</div>
+                <div style="font-weight:bold">@Strings.Label_Signature</div>
                 <div style="word-wrap:break-word;font-size:x-small">@Model.SignatureData</div>
             </div>
             <br />
         }
-        <div><small><b>Hash:</b> @Model.HashCode <i class="bi bi-box"></i></small></div>
+        <div><small><b>@Strings.Label_Hash:</b> @Model.HashCode <i class="bi bi-box"></i></small></div>
         <br />
         <div>
-            <a class="btn btn-outline-primary" href="@Url.Action("DownloadJson","Signature", new { id = Model.ID })"><i class="bi bi-download"></i> Download Signature (.json)</a>
+            <a class="btn btn-outline-primary" href="@Url.Action("DownloadJson","Signature", new { id = Model.ID })"><i class="bi bi-download"></i> @Strings.Label_DownloadSignature (.json)</a>
         </div>
         <br />
         <br />
-        <div><small><i class="bi bi-box"></i> = in/from blockchain</small></div>
+        <div><small><i class="bi bi-box"></i> = @Strings.Label_InFromBlockchain</small></div>
     </div>
 </div>
 

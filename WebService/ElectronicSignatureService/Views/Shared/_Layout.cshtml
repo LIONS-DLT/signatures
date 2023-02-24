@@ -27,7 +27,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house"></i> Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house"></i> @Strings.Label_Home</a>
                         </li>
                         @*<li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Test"><i class="bi bi-cone"></i> Test</a>
@@ -35,22 +35,22 @@
                         @if (Context.IsLoggedIn())
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Document" asp-action="Index"><i class="bi bi-file-earmark"></i> Documents</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Document" asp-action="Index"><i class="bi bi-file-earmark"></i> @Strings.Label_Documents</a>
                             </li>
                         }
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Signature" asp-action="Validate"><i class="bi bi-shield-check"></i> Validate Signature</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Signature" asp-action="Validate"><i class="bi bi-shield-check"></i> @Strings.Label_ValidateSignature</a>
                         </li>
                     </ul>
                     <form class="d-flex">
                         @if (Context.IsLoggedIn())
                         {
-                            <a class="btn btn-outline-light ms-2" asp-area="" asp-controller="Account" asp-action="Logout"><i class="bi bi-power"></i> Logout</a>
+                            <a class="btn btn-outline-light ms-2" asp-area="" asp-controller="Account" asp-action="Logout"><i class="bi bi-power"></i> @Strings.Label_Logout</a>
                         }
                         else
                         {
-                            <a class="btn btn-outline-light ms-2" asp-area="" asp-controller="Account" asp-action="Login"><i class="bi bi-box-arrow-in-right"></i> Login</a>
-                            <a class="btn btn-outline-light ms-2" asp-area="" asp-controller="Account" asp-action="Register"><i class="bi bi-plus-square-dotted"></i> Register</a>
+                            <a class="btn btn-outline-light ms-2" asp-area="" asp-controller="Account" asp-action="Login"><i class="bi bi-box-arrow-in-right"></i> @Strings.Label_Login</a>
+                            <a class="btn btn-outline-light ms-2" asp-area="" asp-controller="Account" asp-action="Register"><i class="bi bi-plus-square-dotted"></i> @Strings.Label_Register</a>
                         }
                     </form>
                 </div>
@@ -86,7 +86,8 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - LionsSign - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - LionsSign - <a asp-area="" asp-controller="Home" asp-action="Privacy">@Strings.Label_Privacy</a>
+            - <a href="@Url.Action("ChangeLanguage", "Home", new { language = "en"})" ">EN</a>/<a href="@Url.Action("ChangeLanguage", "Home", new { language = "de"})" ">DE</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

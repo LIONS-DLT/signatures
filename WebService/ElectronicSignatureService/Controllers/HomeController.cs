@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Net.Codecrete.QrCodeGenerator;
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Text;
 using Document = ElectronicSignatureService.Entities.Document;
 using Signature = ElectronicSignatureService.Entities.Signature;
@@ -15,10 +16,7 @@ namespace ElectronicSignatureService.Controllers
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             base.OnActionExecuting(context);
-
-            ViewData["alert_success"] = Request.Query["alert_success"].FirstOrDefault();
-            ViewData["alert_error"] = Request.Query["alert_error"].FirstOrDefault();
-            ViewData["alert_info"] = Request.Query["alert_info"].FirstOrDefault();
+            AppInit.OnActionExecuting(this, context);
         }
 
         private readonly ILogger<HomeController> _logger;
@@ -49,6 +47,12 @@ namespace ElectronicSignatureService.Controllers
         {
             byte[] data = Encoding.UTF8.GetBytes(QrCode.EncodeText(target, QrCode.Ecc.Low).ToSvgString(4, "#c3124c", "#ffffff"));
             return File(data, "image/svg+xml", "qr.svg");
+        }
+
+        public IActionResult ChangeLanguage(string language)
+        {
+            this.HttpContext.Session.SetString("CultureInfo", language);
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Test()

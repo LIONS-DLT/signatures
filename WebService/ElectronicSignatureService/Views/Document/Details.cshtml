@@ -11,20 +11,20 @@
 
 <div class="row">
     <div class="col-lg-8 offset-lg-2">
-        <h2>Document - @Model.Name</h2>
-        <div><small><b>ID:</b> @Model.ID</small></div>
-        <div><small><b>Blockchain Mapping ID:</b> @Model.BlockchainMappingID</small></div>
-        <div><small><b>Filename:</b> @Model.Filename</small></div>
-        <div><small><b>Hash:</b> @Model.HashCode</small></div>
-        <div><small><b>Timestamp:</b> @Model.TimeStamp.ToString()</small></div>
+        <h2>@Strings.Label_Document - @Model.Name</h2>
+        <div><small><b>@Strings.Label_ID:</b> @Model.ID</small></div>
+        <div><small><b>@Strings.Label_BlockchainMappingID:</b> @Model.BlockchainMappingID</small></div>
+        <div><small><b>@Strings.Label_Filename:</b> @Model.Filename</small></div>
+        <div><small><b>@Strings.Label_Hash:</b> @Model.HashCode</small></div>
+        <div><small><b>@Strings.Label_Timestamp:</b> @Model.TimeStamp.ToString()</small></div>
         <br />
 
-        <h4>Signatures</h4>
+        <h4>@Strings.Label_Signatures</h4>
 
         <ul>
         @for(int slot = 1; slot <= Model.SignaturePlaceholderCount; slot++)
         {
-             <li><a href="@Url.Action("Signature","Document",new { id = Model.ID, slot = slot })">Slot #@slot</a></li>
+            <li><a href="@Url.Action("Signature","Document",new { id = Model.ID, slot = slot })">@Strings.Label_Slot #@slot</a></li>
         }
         </ul>
 

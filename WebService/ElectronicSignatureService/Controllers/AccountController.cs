@@ -12,10 +12,7 @@ namespace ElectronicSignatureService.Controllers
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             base.OnActionExecuting(context);
-
-            ViewData["alert_success"] = Request.Query["alert_success"].FirstOrDefault();
-            ViewData["alert_error"] = Request.Query["alert_error"].FirstOrDefault();
-            ViewData["alert_info"] = Request.Query["alert_info"].FirstOrDefault();
+            AppInit.OnActionExecuting(this, context);
         }
 
         public IActionResult Index()

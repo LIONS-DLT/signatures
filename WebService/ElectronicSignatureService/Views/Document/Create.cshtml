@@ -8,23 +8,22 @@
 
 <div class="row">
     <div class="col-lg-8 offset-lg-2">
-        <h2>New Document</h2>
+        <h2>@Strings.Label_NewDocument</h2>
 
         <form method="post" action="@Url.Action("RegisterDocument", "Document")">
             <div class="alert alert-info">
-                Specify a unique name for the document to be registered as far as possible, so that a clear assignment is possible for the recipients. 
-                Also specify the number of placeholders required for different signatures for your document.
+                @Strings.Info_NewDocument
             </div>
             <div class="mb-3">
-                <label for="nameInput" class="form-label">Document Name</label>
+                <label for="nameInput" class="form-label">@Strings.Label_DocumentName</label>
                 <input type="text" class="form-control" id="nameInput" name="name" placeholder="name or subject ...">
             </div>
             <div class="mb-3">
-                <label for="signaturesInput" class="form-label">Number of signatures/placeholders</label>
+                <label for="signaturesInput" class="form-label">@Strings.Label_NumberOfSlots</label>
                 <input type="number" class="form-control" id="signaturesInput" name="signatures" placeholder="number of signatures ..." value="1">
             </div>
             <div>
-                <button type="submit" class="btn btn-primary w-100">Next</button>
+                <button type="submit" class="btn btn-primary w-100">@Strings.Label_Next</button>
             </div>
         </form>
     </div>
