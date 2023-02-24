@@ -29,8 +29,8 @@ namespace ElectronicSignatureService
         {
             [Parameter("uint64", "_id", 1)]
             public ulong ID { get; set; }
-            [Parameter("string", "_hashCode", 2)]
-            public string HashCode { get; set; } = string.Empty;
+            [Parameter("uint256", "_hashCode", 2)]
+            public BigInteger HashCode { get; set; }
         }
 
         [Function("requestDocument", typeof(HashOutputDTO))]
@@ -43,8 +43,8 @@ namespace ElectronicSignatureService
         [Function("createSignature", typeof(CreateSignatureOutputDTO))]
         public class CreateSignatureFunction : FunctionMessage
         {
-            [Parameter("string", "_hashCode", 1)]
-            public string HashCode { get; set; } = string.Empty;
+            [Parameter("uint256", "_hashCode", 1)]
+            public BigInteger HashCode { get; set; }
         }
 
         [Function("requestSignature", typeof(HashOutputDTO))]
@@ -66,8 +66,8 @@ namespace ElectronicSignatureService
         [FunctionOutput]
         public class HashOutputDTO : IFunctionOutputDTO
         {
-            [Parameter("string", "hashCode", 1)]
-            public string HashCode { get; set; } = string.Empty;
+            [Parameter("uint256", "hashCode", 1)]
+            public BigInteger HashCode { get; set; }
             [Parameter("uint", "timestamp", 2)]
             public long TimeStamp { get; set; }
         }
@@ -162,7 +162,7 @@ namespace ElectronicSignatureService
             UpdateDocumentFunction input = new UpdateDocumentFunction()
             {
                 ID = ulong.Parse(id),
-                HashCode = hash
+                HashCode = CryptHelper.HashToBigInteger(hash)
             };
             //var handler = web3.Eth.GetContractQueryHandler<UpdateDocumentFunction>();
             //uint timestampsec = handler.QueryAsync<uint>(contractAddress, input).Result;
@@ -189,7 +189,7 @@ namespace ElectronicSignatureService
 
             CreateSignatureFunction input = new CreateSignatureFunction()
             {
-                HashCode = signature.HashCode
+                HashCode = CryptHelper.HashToBigInteger(signature.HashCode)
             };
             //var handler = web3.Eth.GetContractQueryHandler<CreateSignatureFunction>();
             //CreateSignatureOutputDTO result = handler.QueryAsync<CreateSignatureOutputDTO>(contractAddress, input).Result;
@@ -223,8 +223,8 @@ namespace ElectronicSignatureService
             HashOutputDTO result = handler.QueryAsync<HashOutputDTO>(contractAddress, input).Result;
 
             timeStamp = new DateTime(1970, 1, 1).AddSeconds(result.TimeStamp).ToString("s", CultureInfo.InvariantCulture);
-            
-            return result.HashCode;
+
+            return CryptHelper.BigIntegerToHash(result.HashCode);
         }
         public static string GetSignatureHash(string id, out string timeStamp)
         {
@@ -248,7 +248,7 @@ namespace ElectronicSignatureService
 
             timeStamp = new DateTime(1970, 1, 1).AddSeconds(result.TimeStamp).ToString("s", CultureInfo.InvariantCulture);
 
-            return result.HashCode;
+            return CryptHelper.BigIntegerToHash(result.HashCode);
         }
     }
 

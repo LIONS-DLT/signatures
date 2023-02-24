@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -24,6 +25,23 @@ namespace ElectronicSignatureService
                 byte[] hash = sha256.ComputeHash(bytes);
                 return Convert.ToBase64String(hash).Replace('+', '-').Replace('/', '_').Replace("=", "");
             }
+        }
+
+        public static BigInteger HashToBigInteger(string hash)
+        {
+            hash = hash.Replace('-', '+').Replace('_', '/');
+            int n = hash.Length % 4;
+            if (n > 0)
+                hash += new string('=', 4 - n);
+
+            byte[] data = Convert.FromBase64String(hash);
+
+            return new BigInteger(data);
+        }
+        public static string BigIntegerToHash(BigInteger value)
+        {
+            byte[] hash = value.ToByteArray();
+            return Convert.ToBase64String(hash).Replace('+', '-').Replace('/', '_').Replace("=", "");
         }
     }
 

@@ -8,12 +8,12 @@ contract SignaturesContract {
 
     struct Document {
         uint64 id;
-        string hashCode;
+        uint256 hashCode;
         uint timestamp;
     }
     struct Signature {
         uint64 id;
-        string hashCode;
+        uint256 hashCode;
         uint timestamp;
     }
 
@@ -30,11 +30,11 @@ contract SignaturesContract {
 
     function createDocument() public returns (uint64 id) {
         lastDocumentId++;
-        documents[lastDocumentId] = Document(lastDocumentId, "", 0);
+        documents[lastDocumentId] = Document(lastDocumentId, 0, 0);
         emit DocumentCreated(lastDocumentId);
         return lastDocumentId;
     }
-    function updateDocument(uint64 _id, string memory _hashCode) public returns (uint timestamp) {
+    function updateDocument(uint64 _id, uint256 _hashCode) public returns (uint timestamp) {
         uint time = block.timestamp;
         if(documents[_id].timestamp == 0){
             documents[_id].hashCode = _hashCode;
@@ -44,17 +44,16 @@ contract SignaturesContract {
         }
         return 0;
     }
-    function requestDocument(uint64 _id) public view returns (string memory hashCode, uint timestamp) {
+    function requestDocument(uint64 _id) public view returns (uint256 hashCode, uint timestamp) {
         return (documents[_id].hashCode, documents[_id].timestamp);
     }
 
-
-    function createSignature(string memory _hashCode) public {
+    function createSignature(uint256 _hashCode) public {
         lastSignatureId++;
         signatures[lastSignatureId] = Signature(lastSignatureId, _hashCode, block.timestamp);
         emit SignatureCreated(lastSignatureId, block.timestamp);
     }
-    function requestSignature(uint64 _id) public view returns (string memory hashCode, uint timestamp) {
+    function requestSignature(uint64 _id) public view returns (uint256 hashCode, uint timestamp) {
         return (signatures[_id].hashCode, signatures[_id].timestamp);
     }
 
