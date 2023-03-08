@@ -40,7 +40,7 @@ namespace ElectronicSignatureService
         }
         public static string BigIntegerToHash(BigInteger value)
         {
-            byte[] hash = value.ToByteArray();
+            byte[] hash = value.ToByteArray(true);
             return Convert.ToBase64String(hash).Replace('+', '-').Replace('/', '_').Replace("=", "");
         }
     }
