@@ -35,8 +35,8 @@ namespace ElectronicSignatureService
                 hash += new string('=', 4 - n);
 
             byte[] data = Convert.FromBase64String(hash);
-
-            return new BigInteger(data);
+            
+            return new BigInteger(data, true); // true -> unsigned!
         }
         public static string BigIntegerToHash(BigInteger value)
         {
