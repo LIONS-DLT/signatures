@@ -4,8 +4,11 @@ namespace CertificatesWallet;
 
 public partial class CertPage : ContentPage
 {
-	public CertPage(X509Certificate2 cert)
+	string _file;
+
+	public CertPage(string file, X509Certificate2 cert)
 	{
+		_file = file;
 		InitializeComponent();
 
 		infoLabel.Text = string.Format(@"Issuer: {0}
@@ -23,4 +26,11 @@ Thumbprint: {4}",
 			cert.NotAfter.ToShortDateString(),
 			cert.Thumbprint);
 	}
+
+
+    private void OnDeleteClick(object sender, EventArgs e)
+    {
+        File.Delete(_file);
+        App.Current.MainPage.Navigation.PopToRootAsync();
+    }
 }

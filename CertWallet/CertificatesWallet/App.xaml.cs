@@ -8,13 +8,20 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		//MainPage = new AppShell();
+        //MainPage = new AppShell();
 
         MainPage = new NavigationPage();
         MainPage.Navigation.PushAsync(new MainPage());
     }
 
-	public static object FindResource(string key)
+    protected override void OnStart()
+    {
+        base.OnStart();
+
+        DeviceDisplay.Current.KeepScreenOn = true;
+    }
+
+    public static object FindResource(string key)
 	{
 		if (App.Current.Resources.ContainsKey(key))
 			return App.Current.Resources[key];

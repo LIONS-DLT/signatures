@@ -23,24 +23,27 @@
                 HorizontalOptions="Center" />-->
 
             <Label
-                Text="Certificate Wallet"
+                Text="Certificates &amp; Documents"
                 SemanticProperties.HeadingLevel="Level2"
                 FontSize="18"
                 HorizontalOptions="Center" />
 
             <Button
+                Text="Certificates"
+                Clicked="OnClickCertificates"
+                Padding="20"
+                Style="{StaticResource EntryButton}"
+                HorizontalOptions="Fill" />
+            <Button
+                Text="Documents"
+                Clicked="OnClickDocuments"
+                Padding="20"
+                Style="{StaticResource EntryButton}"
+                HorizontalOptions="Fill" />
+            
+            <Button
                 Text="Scan QR..."
                 Clicked="OnScanClick"
-                Padding="20"
-                HorizontalOptions="Fill" />
-            <Button
-                Text="+ Add Certificate (*.p12, *.pfx)"
-                Clicked="OnAddClick"
-                Padding="20"
-                HorizontalOptions="Fill" />
-            <Button
-                Text="+ Create Self Signed"
-                Clicked="OnCreateClick"
                 Padding="20"
                 HorizontalOptions="Fill" />
 

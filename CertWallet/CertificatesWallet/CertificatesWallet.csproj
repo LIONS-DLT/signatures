@@ -116,6 +116,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\AppIcon\lions_appicon.png" />
 	  <None Remove="Resources\Images\lions_icon.png" />
+	  <None Remove="Resources\Images\nfc.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -123,14 +124,27 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Plugin.NFC" Version="0.1.26" />
 	  <PackageReference Include="ZXing.Net.Maui.Controls" Version="0.3.0-preview.1" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="CertificatesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="CertPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="CreateModal.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="DocPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="DocumentsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="NfcModal.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="PasswordModal.xaml">
@@ -140,6 +154,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="SelectCertModal.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SelectDocModal.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
