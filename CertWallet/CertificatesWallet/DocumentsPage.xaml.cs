@@ -28,9 +28,10 @@ public partial class DocumentsPage : ContentPage
 
                 var btn = new Button()
                 {
-                    Text = string.Format("{0}\n{1}", info.DisplayText, info.ContentType),
+                    Text = string.Format("{0}\r\n{1}", info.DisplayText, info.ContentType),
                     HorizontalOptions = LayoutOptions.Fill,
-                    Style = App.FindResource("EntryButton") as Style
+                    Style = App.FindResource("EntryButton") as Style,
+                    LineBreakMode = LineBreakMode.WordWrap
                 };
                 btn.Clicked += (object sender, EventArgs e) =>
                 {
