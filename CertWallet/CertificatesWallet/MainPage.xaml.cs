@@ -46,7 +46,7 @@ public partial class MainPage : ContentPage
             byte[] data = DataExchangeService.RetrieveMessage(retrieveUrl);
             data = CryptHelper.DecryptAES(data, retrieveKey);
 
-            string path = Path.Combine(FileSystem.Current.AppDataDirectory, Guid.NewGuid().ToString() + ".cjws");
+            string path = Path.Combine(FileSystem.Current.AppDataDirectory, DateTime.Now.Ticks.ToString() + ".cjws");
             File.WriteAllBytes(path, data);
             OnClickDocuments(null, null);
         }
@@ -67,7 +67,7 @@ public partial class MainPage : ContentPage
         {
             string cjwsString = urlParameters[1];
 
-            string path = Path.Combine(FileSystem.Current.AppDataDirectory, Guid.NewGuid().ToString() + ".cjws");
+            string path = Path.Combine(FileSystem.Current.AppDataDirectory, DateTime.Now.Ticks.ToString() + ".cjws");
             File.WriteAllBytes(path, Encoding.UTF8.GetBytes(cjwsString));
             OnClickDocuments(null, null);
         }

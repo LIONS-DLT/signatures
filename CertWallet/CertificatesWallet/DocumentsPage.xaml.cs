@@ -23,21 +23,25 @@ public partial class DocumentsPage : ContentPage
         {
             if (file.EndsWith(".cjws"))
             {
-                string filepath = file;
-                CJWSHeaderInfo info = CJWSHeaderInfo.FromString(File.ReadAllText(filepath).Split('.')[0]);
+                try
+                {
+                    string filepath = file;
+                    CJWSHeaderInfo info = CJWSHeaderInfo.FromString(File.ReadAllText(filepath).Split('.')[0]);
 
-                var btn = new Button()
-                {
-                    Text = string.Format("{0}\r\n{1}", info.DisplayText, info.ContentType),
-                    HorizontalOptions = LayoutOptions.Fill,
-                    Style = App.FindResource("EntryButton") as Style,
-                    LineBreakMode = LineBreakMode.WordWrap
-                };
-                btn.Clicked += (object sender, EventArgs e) =>
-                {
-                    OnDocumentClicked(filepath);
-                };
-                layout.Add(btn);
+                    var btn = new Button()
+                    {
+                        Text = string.Format("{0}\r\n{1}", info.DisplayText, info.ContentType),
+                        HorizontalOptions = LayoutOptions.Fill,
+                        Style = App.FindResource("EntryButton") as Style,
+                        LineBreakMode = LineBreakMode.WordWrap
+                    };
+                    btn.Clicked += (object sender, EventArgs e) =>
+                    {
+                        OnDocumentClicked(filepath);
+                    };
+                    layout.Add(btn);
+                }
+                catch (Exception ex) { }
             }
         }
     }

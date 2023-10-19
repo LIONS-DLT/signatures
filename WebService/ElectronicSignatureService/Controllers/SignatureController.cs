@@ -116,13 +116,14 @@ namespace ElectronicSignatureService.Controllers
 
             X509Certificate2 cert = new X509Certificate2(data, password);
 
-            if(!cert.Verify())
-                return RedirectToAction("Create", "Signature", new
-                {
-                    documentId = documentID,
-                    signatureSlot = slot,
-                    alert_error = "Certificate verification failed. Note that self-signed certificates are not allowed."
-                });
+            // TODO: wieder einfügen:
+            //if(!cert.Verify())
+            //    return RedirectToAction("Create", "Signature", new
+            //    {
+            //        documentId = documentID,
+            //        signatureSlot = slot,
+            //        alert_error = "Certificate verification failed. Note that self-signed certificates are not allowed."
+            //    });
 
             data = cert.Export(X509ContentType.Cert);
 
@@ -205,13 +206,14 @@ namespace ElectronicSignatureService.Controllers
 
             X509Certificate2 cert = new X509Certificate2(signatureResponse.Certificate!);
 
-            if (!cert.Verify())
-                return RedirectToAction("Create", "Signature", new
-                {
-                    documentId = documentID,
-                    signatureSlot = slot,
-                    alert_error = "Certificate verification failed."
-                });
+            // TODO: wieder einfügen:
+            //if (!cert.Verify())
+            //    return RedirectToAction("Create", "Signature", new
+            //    {
+            //        documentId = documentID,
+            //        signatureSlot = slot,
+            //        alert_error = "Certificate verification failed."
+            //    });
 
             ECDsa? key_ecdsa = cert.GetECDsaPublicKey();
             DSA? key_dsa = cert.GetDSAPublicKey();

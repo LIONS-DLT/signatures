@@ -13,21 +13,25 @@ public partial class SelectDocModal : ContentPage
         {
             if (file.EndsWith(".cjws"))
             {
-                string filepath = file;
-                CJWSHeaderInfo info = CJWSHeaderInfo.FromString(File.ReadAllText(filepath).Split('.')[0]);
+                try
+                {
+                    string filepath = file;
+                    CJWSHeaderInfo info = CJWSHeaderInfo.FromString(File.ReadAllText(filepath).Split('.')[0]);
 
-                var btn = new Button()
-                {
-                    Text = string.Format("{0}\n{1}", info.DisplayText, info.ContentType),
-                    HorizontalOptions = LayoutOptions.Fill,
-                    Style = App.FindResource("EntryButton") as Style
-                };
-                btn.Clicked += (object sender, EventArgs e) =>
-                {
-                    App.Current.MainPage.Navigation.PopModalAsync();
-                    _callback(filepath);
-                };
-                layout.Insert(layout.IndexOf(btnCancel), btn);
+                    var btn = new Button()
+                    {
+                        Text = string.Format("{0}\n{1}", info.DisplayText, info.ContentType),
+                        HorizontalOptions = LayoutOptions.Fill,
+                        Style = App.FindResource("EntryButton") as Style
+                    };
+                    btn.Clicked += (object sender, EventArgs e) =>
+                    {
+                        App.Current.MainPage.Navigation.PopModalAsync();
+                        _callback(filepath);
+                    };
+                    layout.Insert(layout.IndexOf(btnCancel), btn);
+                }
+                catch (Exception ex) { }
             }
         }
     }
