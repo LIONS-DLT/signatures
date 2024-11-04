@@ -11,12 +11,12 @@
             Padding="30,20"
             VerticalOptions="Center">
 
-            <!--<Button
-                Text="+ Add Certificate (*.p12, *.pfx)"
-                Clicked="OnAddClick"
+            <Button
+                Text="Delete All"
+                Clicked="Button_Delete_Clicked"
                 Padding="20"
                 HorizontalOptions="Fill" />
-            <Button
+            <!--<Button
                 Text="+ Create Self Signed"
                 Clicked="OnCreateClick"
                 Padding="20"

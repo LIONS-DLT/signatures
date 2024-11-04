@@ -100,7 +100,8 @@ namespace ElectronicSignatureService
 
         private static Account? account = null;
         private static Web3? web3 = null;
-        private static string contractAddress = string.Empty;
+        private static string contractAddressDocs = string.Empty;
+        private static string contractAddressSigns = string.Empty;
 
         public static void Init()
         {
@@ -113,7 +114,8 @@ namespace ElectronicSignatureService
             {
                 var url = AppConfig.Current.EthereumUrl;
                 var privateKey = AppConfig.Current.EthereumPrivateKey;
-                contractAddress = AppConfig.Current.EthereumContractAddress;
+                contractAddressDocs = AppConfig.Current.EthereumContractAddressDocs;
+                contractAddressSigns = AppConfig.Current.EthereumContractAddressSigns;
                 account = new Account(privateKey);
                 web3 = new Web3(account, url);
 
@@ -144,7 +146,7 @@ namespace ElectronicSignatureService
 
 
             var handler = web3.Eth.GetContractTransactionHandler<CreateDocumentFunction>();
-            var transactionReceipt = handler.SendRequestAndWaitForReceiptAsync(contractAddress, input).Result;
+            var transactionReceipt = handler.SendRequestAndWaitForReceiptAsync(contractAddressDocs, input).Result;
             DocumentCreatedEventDTO result = transactionReceipt.DecodeAllEvents<DocumentCreatedEventDTO>().First().Event;
 
             return result.ID.ToString();
@@ -168,7 +170,7 @@ namespace ElectronicSignatureService
             //uint timestampsec = handler.QueryAsync<uint>(contractAddress, input).Result;
 
             var handler = web3.Eth.GetContractTransactionHandler<UpdateDocumentFunction>();
-            var transactionReceipt = handler.SendRequestAndWaitForReceiptAsync(contractAddress, input).Result;
+            var transactionReceipt = handler.SendRequestAndWaitForReceiptAsync(contractAddressDocs, input).Result;
             DocumentUpdatedEventDTO result = transactionReceipt.DecodeAllEvents<DocumentUpdatedEventDTO>().First().Event;
 
 
@@ -195,7 +197,7 @@ namespace ElectronicSignatureService
             //CreateSignatureOutputDTO result = handler.QueryAsync<CreateSignatureOutputDTO>(contractAddress, input).Result;
 
             var handler = web3.Eth.GetContractTransactionHandler<CreateSignatureFunction>();
-            var transactionReceipt = handler.SendRequestAndWaitForReceiptAsync(contractAddress, input).Result;
+            var transactionReceipt = handler.SendRequestAndWaitForReceiptAsync(contractAddressSigns, input).Result;
             SignatureCreatedEventDTO result = transactionReceipt.DecodeAllEvents<SignatureCreatedEventDTO>().First().Event;
 
             timeStamp = new DateTime(1970, 1, 1).AddSeconds(result.TimeStamp);
@@ -220,7 +222,7 @@ namespace ElectronicSignatureService
                 ID = ulong.Parse(id)
             };
             var handler = web3.Eth.GetContractQueryHandler<RequestDocumentFunction>();
-            HashOutputDTO result = handler.QueryAsync<HashOutputDTO>(contractAddress, input).Result;
+            HashOutputDTO result = handler.QueryAsync<HashOutputDTO>(contractAddressDocs, input).Result;
 
             timeStamp = new DateTime(1970, 1, 1).AddSeconds(result.TimeStamp).ToString("s", CultureInfo.InvariantCulture);
 
@@ -244,7 +246,7 @@ namespace ElectronicSignatureService
                 ID = ulong.Parse(id)
             };
             var handler = web3.Eth.GetContractQueryHandler<RequestSignatureFunction>();
-            HashOutputDTO result = handler.QueryAsync<HashOutputDTO>(contractAddress, input).Result;
+            HashOutputDTO result = handler.QueryAsync<HashOutputDTO>(contractAddressSigns, input).Result;
 
             timeStamp = new DateTime(1970, 1, 1).AddSeconds(result.TimeStamp).ToString("s", CultureInfo.InvariantCulture);
 

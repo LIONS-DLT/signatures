@@ -50,4 +50,20 @@ public partial class DocumentsPage : ContentPage
     {
         App.Current.MainPage.Navigation.PushAsync(new DocPage(file));
     }
+
+    private void Button_Delete_Clicked(object sender, EventArgs e)
+    {
+        foreach (var file in Directory.GetFiles(FileSystem.Current.AppDataDirectory))
+        {
+            if (file.EndsWith(".cjws"))
+            {
+                try
+                {
+                    File.Delete(file);
+                }
+                catch (Exception ex) { }
+            }
+        }
+        App.Current.MainPage.Navigation.PopToRootAsync();
+    }
 }
